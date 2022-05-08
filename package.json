@@ -19,6 +19,8 @@
   "homepage": "https://github.com/hthomp15/mongo-social-network#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "mongoose": "^6.3.2"
+    "moment": "^2.29.3",
+    "mongoose": "^6.3.2",
+    "validator": "^13.7.0"
   }
 }
