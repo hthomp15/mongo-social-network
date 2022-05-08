@@ -2,7 +2,7 @@ const { User } = require("../models");
 const { populate } = require("../models/User");
 
 const userController = {
-  //get all users
+// GET ./api/users - returns all users
   getAllUsers(req, res) {
     User.find({})
       .populate({
@@ -17,7 +17,7 @@ const userController = {
         res.status(400).json(err);
       });
   },
-  // get one pizza by id
+// GET ./api/users/:id - returns one user
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
       .populate({
@@ -38,13 +38,13 @@ const userController = {
         res.status(400).json(err);
       });
   },
-  // create user
+// POST ./api/users - creates a user
   createUser({ body }, res) {
     User.create(body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(400).json(err));
   },
-  // update user by id
+// PUT ./api/users/:id - updates a user
   updateUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id }, body, { new: true })
       .then((dbUserData) => {
@@ -56,7 +56,7 @@ const userController = {
       })
       .catch((err) => res.status(400).json(err));
   },
-  // delete user
+// DELETE ./api/users/:id - deletes a user
   deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })
       .then((dbUserData) => {
@@ -69,7 +69,7 @@ const userController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  // add friend
+// POST ./api/users/:id/friends/:friendsId - adds a friend
   addFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.id },
@@ -79,7 +79,7 @@ const userController = {
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(400).json(err));
   },
-
+// DELETE ./api/users/:id/friends/:friendsId - removes a friend
   removeFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.id },
